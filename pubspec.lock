@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.9.0"
+  auto_size_text:
+    dependency: transitive
+    description:
+      name: auto_size_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -102,6 +109,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.1"
+  horizontal_picker:
+    dependency: "direct main"
+    description:
+      name: horizontal_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.2.0"
+  horizontalcalender:
+    dependency: "direct main"
+    description:
+      name: horizontalcalender
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   http:
     dependency: transitive
     description:
@@ -116,6 +137,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   lints:
     dependency: transitive
     description:
