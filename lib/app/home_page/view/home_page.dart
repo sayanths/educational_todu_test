@@ -25,9 +25,12 @@ class HomePage extends StatelessWidget {
         ),
         centerTitle: true,
         actions: const [
-          Icon(
-            Icons.sunny,
-            color: Colors.black,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20),
+            child: Icon(
+              Icons.sunny,
+              color: Colors.black,
+            ),
           )
         ],
       ),
@@ -37,44 +40,29 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Text(
-              "Welcome",
-              style: GoogleFonts.lato(
-                  fontSize: 30,
-                  letterSpacing: 2,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  "Welcome",
+                  style: GoogleFonts.lato(
+                      fontSize: 30,
+                      letterSpacing: 2,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
             const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Container(
-                  height: 60,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                Container(
-                  height: 60,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
-                Container(
-                  height: 60,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    color: Colors.red,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                ),
+              children: const [
+                CustomContainer(title: 'Personal'),
+                CustomContainer(title: 'Business'),
+                CustomContainer(title: 'Others'),
               ],
             ),
             const SizedBox(
@@ -104,7 +92,9 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
-                    Text("ds"),
+                    Text(
+                      "ds",
+                    ),
                   ],
                 ),
               ),
@@ -115,8 +105,42 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Get.to(() => AddingToList(), transition: Transition.cupertino);
+          Get.to(
+            () => const AddingToList(),
+            transition: Transition.cupertino,
+          );
         },
+      ),
+    );
+  }
+}
+
+class CustomContainer extends StatelessWidget {
+  final String title;
+  const CustomContainer({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Container(
+        height: 60,
+        width: 100,
+        decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 17, 17, 255),
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Center(
+            child: Text(
+          title,
+          style: GoogleFonts.lato(
+              fontSize: 15,
+              letterSpacing: 2,
+              color: const Color.fromARGB(255, 255, 253, 253),
+              fontWeight: FontWeight.w400),
+        )),
       ),
     );
   }
