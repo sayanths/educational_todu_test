@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         leading: const Icon(
@@ -35,71 +36,90 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Welcome",
-                  style: GoogleFonts.lato(
-                      fontSize: 30,
-                      letterSpacing: 2,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 20,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Welcome",
+                    style: GoogleFonts.lato(
+                        fontSize: 30,
+                        letterSpacing: 2,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                CustomContainer(title: 'Personal'),
-                CustomContainer(title: 'Business'),
-                CustomContainer(title: 'Others'),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Todo List",
-              style: GoogleFonts.lato(
-                  fontSize: 20,
-                  letterSpacing: 2,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              child: Divider(
+              const SizedBox(
                 height: 20,
-                color: Colors.black,
-                thickness: 1,
               ),
-            ),
-            Card(
-              color: const Color.fromARGB(255, 246, 243, 219),
-              child: SizedBox(
-                height: 60,
-                width: 400,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  CustomContainer(title: 'Personal'),
+                  CustomContainer(title: 'Business'),
+                  CustomContainer(title: 'Others'),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: size.height,
+                decoration: const BoxDecoration(
+                    color: Colors.yellow,
+                    borderRadius:
+                        BorderRadius.only(topLeft: Radius.circular(60))),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Text(
-                      "ds",
+                      "Todo List",
+                      style: GoogleFonts.lato(
+                          fontSize: 20,
+                          letterSpacing: 2,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 50),
+                      child: Divider(
+                        height: 20,
+                        color: Colors.black,
+                        thickness: 1,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Card(
+                      color: const Color.fromARGB(255, 246, 243, 219),
+                      child: SizedBox(
+                        height: 60,
+                        width: 400,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Text(
+                              "ds",
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
