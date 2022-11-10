@@ -1,4 +1,6 @@
+import 'package:banglore_task/app/add_list/view/adding_to_list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomePage extends StatelessWidget {
@@ -112,7 +114,9 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => AddingToList(), transition: Transition.cupertino);
+        },
       ),
     );
   }
