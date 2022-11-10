@@ -94,8 +94,25 @@ class HomePage extends StatelessWidget {
                 thickness: 1,
               ),
             ),
+            Card(
+              color: const Color.fromARGB(255, 246, 243, 219),
+              child: SizedBox(
+                height: 60,
+                width: 400,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Text("ds"),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {},
       ),
     );
   }

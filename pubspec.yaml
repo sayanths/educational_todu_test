@@ -41,6 +41,10 @@ dependencies:
   slidable_bar: ^1.1.1
   horizontal_picker: ^1.2.0
   horizontalcalender: ^0.0.4
+  supercharged: ^2.1.1
+  animate_do: ^2.1.0
+  simple_animations: ^5.0.0+2
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
