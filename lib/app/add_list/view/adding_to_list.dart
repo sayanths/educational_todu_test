@@ -1,4 +1,5 @@
 import 'package:banglore_task/app/add_list/controller/add_list_controller.dart';
+import 'package:banglore_task/app/add_list/view/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,11 +11,12 @@ class AddingToList extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Get.put(AddToListController());
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Column(
           children: [
             const SizedBox(
-              height: 50,
+              height: 15,
             ),
             Expanded(
               flex: 1,
@@ -28,21 +30,24 @@ class AddingToList extends StatelessWidget {
                           alignment: Alignment.center,
                           children: [
                             SizedBox(
-                                height: 150,
-                                width: 150,
+                                height: 100,
+                                width: 100,
                                 child: CircularProgressIndicator(
-                                  value: data.controller.value,
-                                  color: const Color.fromARGB(255, 38, 0, 255),
+                                  value: data.progress,
+                                  color: data.progress > 3
+                                      ? const Color.fromARGB(255, 222, 91, 15)
+                                      : const Color.fromARGB(255, 38, 0, 255),
                                 )),
                             CustomText(title: data.countText)
                           ],
                         ),
-                        Expanded(
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
                             onTap: () {},
                             child: const Icon(
                               Icons.play_arrow,
-                              size: 60,
+                              size: 50,
                             ),
                           ),
                         ),
@@ -53,12 +58,9 @@ class AddingToList extends StatelessWidget {
               }),
             ),
             Expanded(
-              flex: 3,
+              flex: 1,
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 90,
-                  ),
                   CustomTextFormField(
                       data: data,
                       controller: data.taskController,
@@ -78,13 +80,7 @@ class AddingToList extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        child: ElevatedButton(
-            onPressed: () {
-              data.controller.reverse(
-                  from:
-                      data.controller.value == 0 ? 1.0 : data.controller.value);
-            },
-            child: const Text("Submit")),
+        child: buildButtonCreate(context),
       ),
     );
   }

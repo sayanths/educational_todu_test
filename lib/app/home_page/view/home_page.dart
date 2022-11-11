@@ -1,3 +1,4 @@
+import 'package:banglore_task/app/add_list/controller/add_list_controller.dart';
 import 'package:banglore_task/app/add_list/view/adding_to_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final data = Get.put(AddToListController());
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -133,6 +135,8 @@ class HomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
+          data.controller.reverse(
+              from: data.controller.value == 0 ? 1.0 : data.controller.value);
           Get.to(
             () => const AddingToList(),
             transition: Transition.cupertino,
