@@ -16,12 +16,11 @@ class _AddingToListState extends State<AddingToList>
 
   String get countText {
     Duration count = controller.duration! * controller.value;
-    return '${(count.inHours ).toString().padLeft(2, '0')}  :${(count.inMinutes ~/6).toString().padLeft(2, '0')} : ${(count.inSeconds % 60).toString().padLeft(2, '0')} ';
+    return ' ${(count.inMinutes % 10).toString().padLeft(2, '0')} : ${(count.inSeconds % 60).toString().padLeft(2, '0')} ';
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller =
         AnimationController(vsync: this, duration: const Duration(minutes: 60));
