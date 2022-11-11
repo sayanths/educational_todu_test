@@ -1,11 +1,18 @@
-
 import 'package:banglore_task/app/home_page/controller/theme_controller.dart';
+import 'package:banglore_task/app/home_page/model/model.dart';
 import 'package:banglore_task/app/home_page/view/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await Hive.initFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
+  if (!Hive.isAdapterRegistered(ModelAdapter().typeId)) {
+    Hive.registerAdapter(ModelAdapter());
+
+    runApp(const MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {

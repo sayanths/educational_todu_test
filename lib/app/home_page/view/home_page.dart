@@ -61,16 +61,16 @@ class HomePage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: const [
-                  CustomContainer(title: 'Personal'),
-                  CustomContainer(title: 'Business'),
-                  CustomContainer(title: 'Others'),
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: const [
+              //     CustomContainer(title: 'Personal'),
+              //     CustomContainer(title: 'Business'),
+              //     CustomContainer(title: 'Others'),
+              //   ],
+              // ),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               SizedBox(
                 height: size.height,
@@ -79,7 +79,7 @@ class HomePage extends StatelessWidget {
                     Container(
                       height: size.height,
                       decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 250, 240, 149),
+                          color: Color.fromARGB(255, 252, 247, 206),
                           borderRadius:
                               BorderRadius.only(topLeft: Radius.circular(60))),
                       child: Column(
@@ -123,6 +123,17 @@ class HomePage extends StatelessWidget {
                                               255, 150, 113, 1),
                                           borderRadius:
                                               BorderRadius.circular(5)),
+                                      child: Column(
+                                        children: const [
+                                          Expanded(
+                                              child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 20),
+                                            child: Text("data"),
+                                          )),
+                                          Expanded(flex: 2, child: Text("sdsdss"))
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
@@ -176,7 +187,7 @@ class CustomContainer extends StatelessWidget {
         height: 60,
         width: 100,
         decoration: BoxDecoration(
-          color: const Color.fromARGB(255, 17, 17, 255),
+          color: const Color.fromARGB(255, 255, 0, 0),
           borderRadius: BorderRadius.circular(5),
         ),
         child: Center(
