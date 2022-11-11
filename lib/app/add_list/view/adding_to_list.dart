@@ -24,14 +24,28 @@ class AddingToList extends StatelessWidget {
                   builder: (context, _) {
                     return Column(
                       children: [
-                        CustomText(title: data.countText),
-                        GestureDetector(
-                          onTap: () {},
-                          child: const Icon(
-                            Icons.play_arrow,
-                            size: 60,
+                        Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            SizedBox(
+                                height: 150,
+                                width: 150,
+                                child: CircularProgressIndicator(
+                                  value: data.controller.value,
+                                  color: const Color.fromARGB(255, 38, 0, 255),
+                                )),
+                            CustomText(title: data.countText)
+                          ],
+                        ),
+                        Expanded(
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: const Icon(
+                              Icons.play_arrow,
+                              size: 60,
+                            ),
                           ),
-                        )
+                        ),
                       ],
                     );
                   },
@@ -43,7 +57,7 @@ class AddingToList extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 60,
+                    height: 90,
                   ),
                   CustomTextFormField(
                       data: data,
