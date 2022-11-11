@@ -3,34 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddingToList extends StatefulWidget {
+class AddingToList extends StatelessWidget {
   const AddingToList({super.key});
-
-  @override
-  State<AddingToList> createState() => _AddingToListState();
-}
-
-class _AddingToListState extends State<AddingToList>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
-
-  String get countText {
-    Duration count = controller.duration! * controller.value;
-    return ' ${(count.inMinutes % 10).toString().padLeft(2, '0')} : ${(count.inSeconds % 60).toString().padLeft(2, '0')} ';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    controller =
-        AnimationController(vsync: this, duration: const Duration(minutes: 60));
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,11 +20,11 @@ class _AddingToListState extends State<AddingToList>
               flex: 1,
               child: GetBuilder<AddToListController>(builder: (data) {
                 return AnimatedBuilder(
-                  animation: controller,
+                  animation: data.controller,
                   builder: (context, _) {
                     return Column(
                       children: [
-                        CustomText(title: countText),
+                        CustomText(title: data.countText),
                         GestureDetector(
                           onTap: () {},
                           child: const Icon(
@@ -92,8 +66,9 @@ class _AddingToListState extends State<AddingToList>
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
         child: ElevatedButton(
             onPressed: () {
-              controller.reverse(
-                  from: controller.value == 0 ? 1.0 : controller.value);
+              data.controller.reverse(
+                  from:
+                      data.controller.value == 0 ? 1.0 : data.controller.value);
             },
             child: const Text("Submit")),
       ),
