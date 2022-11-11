@@ -1,11 +1,37 @@
 import 'package:banglore_task/app/add_list/controller/add_list_controller.dart';
-import 'package:banglore_task/app/add_list/view/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AddingToList extends StatelessWidget {
+class AddingToList extends StatefulWidget {
   const AddingToList({super.key});
+
+  @override
+  State<AddingToList> createState() => _AddingToListState();
+}
+
+class _AddingToListState extends State<AddingToList>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+
+  String get countText {
+    Duration count = controller.duration! * controller.value;
+    return '${(count.inHours ).toString().padLeft(2, '0')}  :${(count.inMinutes ~/6).toString().padLeft(2, '0')} : ${(count.inSeconds % 60).toString().padLeft(2, '0')} ';
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: const Duration(minutes: 60));
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +46,22 @@ class AddingToList extends StatelessWidget {
             Expanded(
               flex: 1,
               child: GetBuilder<AddToListController>(builder: (data) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    CustomText(title: "10"),
-                    CustomText(title: ':00'),
-                  ],
+                return AnimatedBuilder(
+                  animation: controller,
+                  builder: (context, _) {
+                    return Column(
+                      children: [
+                        CustomText(title: countText),
+                        GestureDetector(
+                          onTap: () {},
+                          child: const Icon(
+                            Icons.play_arrow,
+                            size: 60,
+                          ),
+                        )
+                      ],
+                    );
+                  },
                 );
               }),
             ),
@@ -55,7 +91,12 @@ class AddingToList extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        child: buildButtonCreate(context),
+        child: ElevatedButton(
+            onPressed: () {
+              controller.reverse(
+                  from: controller.value == 0 ? 1.0 : controller.value);
+            },
+            child: const Text("Submit")),
       ),
     );
   }
