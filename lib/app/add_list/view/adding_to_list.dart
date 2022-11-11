@@ -9,7 +9,7 @@ class AddingToList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final data = Get.put(AddToList());
+    final data = Get.put(AddToListController());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -19,16 +19,15 @@ class AddingToList extends StatelessWidget {
             ),
             Expanded(
               flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  CustomText(title: '10'),
-                  CustomText(title: ':00'),
-                  CustomText(
-                    title: ':50',
-                  ),
-                ],
-              ),
+              child: GetBuilder<AddToListController>(builder: (data) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CustomText(title: "10"),
+                    CustomText(title: ':00'),
+                  ],
+                );
+              }),
             ),
             Expanded(
               flex: 3,
@@ -97,7 +96,7 @@ class CustomTextFormField extends StatelessWidget {
     this.validate,
   }) : super(key: key);
 
-  final AddToList data;
+  final AddToListController data;
 
   @override
   Widget build(BuildContext context) {
