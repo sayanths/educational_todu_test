@@ -63,70 +63,85 @@ class HomePage extends StatelessWidget {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const CustomContainer(title: 'Personal'),
-                  Image.asset(
-                    "assets/image.png",
-                    height: 150,
-                  ),
-                  const CustomContainer(title: 'Business'),
-                  //   CustomContainer(title: 'Others'),
+                children: const [
+                  CustomContainer(title: 'Personal'),
+                  CustomContainer(title: 'Business'),
+                  CustomContainer(title: 'Others'),
                 ],
               ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
-              Stack(
-                children: [
-                  Container(
-                    height: size.height,
-                    decoration: const BoxDecoration(
-                        color: Colors.yellow,
-                        borderRadius:
-                            BorderRadius.only(topLeft: Radius.circular(60))),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Todo List",
-                          style: GoogleFonts.lato(
-                              fontSize: 20,
-                              letterSpacing: 2,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 50),
-                          child: Divider(
+              SizedBox(
+                height: size.height,
+                child: Stack(
+                  children: [
+                    Container(
+                      height: size.height,
+                      decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 250, 240, 149),
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(60))),
+                      child: Column(
+                        children: [
+                          const SizedBox(
                             height: 20,
-                            color: Colors.black,
-                            thickness: 1,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Card(
-                          color: const Color.fromARGB(255, 246, 243, 219),
-                          child: SizedBox(
-                            height: 60,
-                            width: 400,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text(
-                                  "ds",
-                                ),
-                              ],
+                          Text(
+                            "Todo List",
+                            style: GoogleFonts.lato(
+                                fontSize: 20,
+                                letterSpacing: 2,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 50),
+                            child: Divider(
+                              height: 20,
+                              color: Colors.black,
+                              thickness: 1,
                             ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: LimitedBox(
+                              maxHeight: size.height,
+                              child: GridView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: 10,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        mainAxisSpacing: 5,
+                                        crossAxisSpacing: 5,
+                                        crossAxisCount: 2),
+                                itemBuilder: (context, index) {
+                                  return Card(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 150, 113, 1),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      left: 0,
+                      top: -20,
+                      child: Image.asset(
+                        "assets/image.png",
+                        height: 150,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -11,7 +11,18 @@ class AddingToList extends StatelessWidget {
   Widget build(BuildContext context) {
     final data = Get.put(AddToListController());
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              data.progress == 0;
+              Get.back();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+            )),
+      ),
       body: SafeArea(
         child: Column(
           children: [
