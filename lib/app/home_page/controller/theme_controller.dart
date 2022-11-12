@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:banglore_task/app/home_page/model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +6,7 @@ abstract class CrudOperation {
   Future<void> create(Model value);
   Future<List<Model>> getAllList();
   Future<void> read();
- // Future<void> update(String index, Model value);
+  // Future<void> update(String index, Model value);
   Future<void> delete(String id);
 }
 
@@ -23,13 +21,12 @@ class ThemeController extends GetxController with CrudOperation {
 
   @override
   Future<void> create(Model value) {
-    // TODO: implement create
     throw UnimplementedError();
   }
 
   @override
   Future<void> delete(String id) {
-    // TODO: implement delete
+  
     throw UnimplementedError();
   }
 
@@ -38,7 +35,7 @@ class ThemeController extends GetxController with CrudOperation {
     // TODO: implement read
     throw UnimplementedError();
   }
-  
+
   @override
   Future<List<Model>> getAllList() {
     // TODO: implement getAllList
