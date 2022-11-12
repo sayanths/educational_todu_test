@@ -12,10 +12,12 @@ class HomePage extends StatelessWidget {
     final data = Get.put(AddToListController());
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 28, 0, 184),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 28, 0, 184),
         leading: const Icon(
           Icons.menu,
-          color: Colors.black,
+          color: Colors.white,
         ),
         elevation: 0,
         title: Text(
@@ -23,7 +25,7 @@ class HomePage extends StatelessWidget {
           style: GoogleFonts.lato(
               fontSize: 20,
               letterSpacing: 2,
-              color: Colors.black,
+              color: Colors.white,
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -32,7 +34,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Icon(
               Icons.sunny,
-              color: Colors.black,
+              color: Colors.white,
             ),
           )
         ],
@@ -52,7 +54,7 @@ class HomePage extends StatelessWidget {
                   style: GoogleFonts.lato(
                       fontSize: 30,
                       letterSpacing: 2,
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
               ),
@@ -78,7 +80,7 @@ class HomePage extends StatelessWidget {
                   Container(
                     height: size.height,
                     decoration: const BoxDecoration(
-                        color: Color.fromARGB(255, 252, 247, 206),
+                        color: Colors.white,
                         borderRadius:
                             BorderRadius.only(topLeft: Radius.circular(60))),
                     child: Column(
@@ -120,8 +122,7 @@ class HomePage extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         color: const Color.fromARGB(
                                             255, 150, 113, 1),
-                                        borderRadius:
-                                            BorderRadius.circular(5)),
+                                        borderRadius: BorderRadius.circular(5)),
                                     child: Column(
                                       children: const [
                                         Expanded(
