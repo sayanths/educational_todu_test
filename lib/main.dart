@@ -25,7 +25,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Education App',
       debugShowCheckedModeBanner: false,
-      themeMode: themProvider.themeMode,
+
+      /// themeMode: themProvider.themeMode,
       darkTheme: Mytheme.darkthem,
       theme: Mytheme.lightthem,
       home: const HomePage(),
