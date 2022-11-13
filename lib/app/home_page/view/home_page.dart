@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:banglore_task/app/add_list/controller/add_list_controller.dart';
 import 'package:banglore_task/app/add_list/view/adding_to_list.dart';
+import 'package:banglore_task/app/home_page/controller/theme_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +13,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final data = Get.put(AddToListController());
+    final home = Get.put(ThemeController().list);
+    log(home.toString());
+
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 28, 0, 184),
@@ -62,97 +68,95 @@ class HomePage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: const [
-            //     CustomContainer(title: 'Personal'),
-            //     CustomContainer(title: 'Business'),
-            //     CustomContainer(title: 'Others'),
-            //   ],
-            // ),
             const SizedBox(
               height: 10,
             ),
             SizedBox(
               height: size.height,
-              child: Stack(
-                children: [
-                  Container(
-                    height: size.height,
-                    decoration: const BoxDecoration(
-                        color: Colors.white,
-                        borderRadius:
-                            BorderRadius.only(topLeft: Radius.circular(60))),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          "Todo List",
-                          style: GoogleFonts.lato(
-                              fontSize: 20,
-                              letterSpacing: 2,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 50),
-                          child: Divider(
+              child: GetBuilder<ThemeController>(builder: (add) {
+                return Stack(
+                  children: [
+                    Container(
+                      height: size.height,
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius:
+                              BorderRadius.only(topLeft: Radius.circular(60))),
+                      child: Column(
+                        children: [
+                          const SizedBox(
                             height: 20,
-                            color: Colors.black,
-                            thickness: 1,
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: LimitedBox(
-                            maxHeight: size.height,
-                            child: GridView.builder(
-                              physics: const BouncingScrollPhysics(),
-                              itemCount: 10,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      mainAxisSpacing: 5,
-                                      crossAxisSpacing: 5,
-                                      crossAxisCount: 2),
-                              itemBuilder: (context, index) {
-                                return Card(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromARGB(
-                                            255, 150, 113, 1),
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Column(
-                                      children: const [
-                                        Expanded(
-                                            child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 20),
-                                          child: Text("data"),
-                                        )),
-                                        Expanded(flex: 2, child: Text("sdsdss"))
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
+                          Text(
+                            "Todo List",
+                            style: GoogleFonts.lato(
+                                fontSize: 20,
+                                letterSpacing: 2,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 50),
+                            child: Divider(
+                              height: 20,
+                              color: Colors.black,
+                              thickness: 1,
                             ),
                           ),
-                        )
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: LimitedBox(
+                              maxHeight: size.height,
+                              child: GridView.builder(
+                                physics: const BouncingScrollPhysics(),
+                                itemCount: add.list.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        mainAxisSpacing: 5,
+                                        crossAxisSpacing: 5,
+                                        crossAxisCount: 2),
+                                itemBuilder: (context, index) {
+                                  final da = add.list[index];
+                                  return Card(
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 150, 113, 1),
+                                          borderRadius:
+                                              BorderRadius.circular(5)),
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+                                              child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 20),
+                                            child: Text(da.title),
+                                          )),
+                                          Expanded(
+                                              flex: 2,
+                                              child: Text(da.description!))
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  Positioned(
-                    left: 0,
-                    top: -20,
-                    child: Image.asset(
-                      "assets/image.png",
-                      height: 150,
+                    Positioned(
+                      left: 0,
+                      top: -20,
+                      child: Image.asset(
+                        "assets/image.png",
+                        height: 150,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }),
             ),
           ],
         ),

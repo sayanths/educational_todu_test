@@ -1,5 +1,6 @@
 import 'package:banglore_task/app/add_list/controller/add_list_controller.dart';
-import 'package:banglore_task/app/add_list/view/widget/custom_button.dart';
+import 'package:banglore_task/app/home_page/controller/theme_controller.dart';
+import 'package:banglore_task/app/home_page/model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,10 @@ class AddingToList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var we = MediaQuery.of(context).size.width;
+    var he = MediaQuery.of(context).size.height;
     final data = Get.put(AddToListController());
+    // final datas = Get.put(ThemeController());
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -81,7 +85,7 @@ class AddingToList extends StatelessWidget {
                   ),
                   CustomTextFormField(
                       data: data,
-                      controller: data.taskController,
+                      controller: data.descriptionController,
                       title: 'Description (optional)'),
                 ],
               ),
@@ -91,7 +95,41 @@ class AddingToList extends StatelessWidget {
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-        child: buildButtonCreate(context),
+        child: Container(
+          width: we * 0.4,
+          height: 50,
+          margin: EdgeInsets.only(left: we * 0.45),
+          child: GetBuilder<ThemeController>(builder: (datas) {
+            return ElevatedButton(
+                onPressed: () async {
+                  var d = Model(
+                      title: data.taskController.text,
+                      description: data.descriptionController.text);
+                  await datas.addItem(d);
+                  Get.back();
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF002FFF),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40))),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "New Task",
+                      style: GoogleFonts.lato(color: Colors.white),
+                    ),
+                    SizedBox(
+                      width: we * 0.03,
+                    ),
+                    const Icon(
+                      Icons.expand_less_outlined,
+                      color: Colors.white,
+                    )
+                  ],
+                ));
+          }),
+        ),
       ),
     );
   }

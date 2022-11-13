@@ -1,6 +1,7 @@
 import 'package:banglore_task/app/home_page/model/model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 abstract class CrudOperation {
   Future<void> create(Model value);
@@ -10,36 +11,42 @@ abstract class CrudOperation {
   Future<void> delete(String id);
 }
 
-class ThemeController extends GetxController with CrudOperation {
-  // ThemeMode themeMode = ThemeMode.system;
-  // bool get isDarkMode => themeMode == ThemeMode.light;
-
-  // void toggleThem(bool isOne) {
-  //   themeMode = isOne ? ThemeMode.dark : ThemeMode.light;
-  //   update();
-  // }
-
-  @override
-  Future<void> create(Model value) {
-    throw UnimplementedError();
+class ThemeController extends GetxController {
+  List<Model> list = [];
+  String dbName = 'user';
+  Future<void> createItem(Model note) async {
+    Box<Model> box = await Hive.openBox<Model>(dbName);
+    box.add(note);
+    update();
   }
 
-  @override
-  Future<void> delete(String id) {
+  Future<List<Model>> getItems() async {
+    Box<Model> box = await Hive.openBox<Model>(dbName);
+    return box.values.toList();
+   
+  }
+
   
-    throw UnimplementedError();
+
+  Future<void> addItem(Model note) async {
+    Box<Model> box = await Hive.openBox<Model>(dbName);
+    await box.delete(note.id);
+    list = box.values.toList();
+    update();
+  }
+
+
+
+  Future<void> updatestudent(int id, Model studentupvalue) async {
+    final studentDB = await Hive.openBox<Model>(dbName);
+    await studentDB.put(id, studentupvalue);
+    await getItems();
   }
 
   @override
-  Future<void> read() {
-    // TODO: implement read
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<Model>> getAllList() {
-    // TODO: implement getAllList
-    throw UnimplementedError();
+  void onInit() {
+    getItems();
+    super.onInit();
   }
 }
 

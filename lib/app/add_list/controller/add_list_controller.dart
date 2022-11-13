@@ -35,4 +35,8 @@ class AddToListController extends GetxController
     controller.dispose();
     super.dispose();
   }
+
+
+
+ 
 }
